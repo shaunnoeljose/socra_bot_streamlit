@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, AIMessage
 from socratic_bot_logic import socratic_graph, SocraticAgentState
-from logger import logger # Import the configured logger
+# from logger import logger # Import the configured logger
 
 # Load environment variables from .env file
 load_dotenv()
@@ -88,10 +88,10 @@ if user_input:
 
         # Update the session state with the final state from the graph
         st.session_state.socratic_agent_state = final_state
-        logger.info(f"Updated Socratic Agent State: {st.session_state.socratic_agent_state}")
+        # logger.info(f"Updated Socratic Agent State: {st.session_state.socratic_agent_state}")
         # Log the agent's thought to the logger file (this goes to console if LOG_TO_CONSOLE is True, and to file)
-        if final_state["agent_thought"]:
-            logger.info(f"Agent Thought: {final_state['agent_thought']}")
+        # if final_state["agent_thought"]:
+        #     logger.info(f"Agent Thought: {final_state['agent_thought']}")
 
         # Extract the last message from the updated state for display
         last_ai_message = None
@@ -173,7 +173,7 @@ if user_input:
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
-        logger.error(f"Error during graph invocation: {e}", exc_info=True)
+        # logger.error(f"Error during graph invocation: {e}", exc_info=True)
 
 # Add a sidebar for potential future controls or information
 st.sidebar.header("Tutor Settings")

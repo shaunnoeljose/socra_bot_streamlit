@@ -1,5 +1,4 @@
 # socratic_bot_logic.py
-
 import os
 from typing import List, TypedDict, Annotated
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
@@ -10,9 +9,9 @@ from langgraph.graph import StateGraph, END
 # Removed ToolExecutor and ToolInvocation imports
 # from langgraph.prebuilt import ToolExecutor, ToolInvocation
 
-# Import the logging utility (assuming logger.py will be created later)
-# from logger import setup_logger
-# logger = setup_logger()
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
 
 # --- 1. Define the Agent State ---
 # This TypedDict defines the structure of our graph's state.
@@ -194,14 +193,11 @@ def call_tool(state: SocraticAgentState):
 
     if isinstance(last_message, AIMessage) and last_message.tool_calls:
         for tool_call in last_message.tool_calls:
-            # logger.info(f"Calling tool: {tool_call.name} with args: {tool_call.args}")
-            # Instead of ToolInvocation and ToolExecutor, directly call the tool function
             # This assumes the tool functions are directly callable within this scope
             tool_function = globals().get(tool_call.name)
             if tool_function:
                 response = tool_function(**tool_call.args)
                 tool_output_messages.append(AIMessage(content=str(response), name=tool_call.name))
-                # logger.info(f"Tool '{tool_call.name}' output: {response}")
 
                 # Special handling for MCQ agent output
                 if tool_call.name == "mcq_agent":
@@ -245,7 +241,6 @@ def generate_mcq_node(state: SocraticAgentState):
     # This node primarily serves as a distinct point in the graph for MCQ flow.
     # We can add more specific MCQ-related logic here if needed, but for now,
     # it just confirms the MCQ state is set.
-    # logger.info("MCQ generation node activated. MCQ details updated in state.")
     return state # Return the state as is, after call_tool has updated it.
 
 # --- 5. Build the LangGraph ---
@@ -290,5 +285,3 @@ socratic_graph = workflow.compile()
 #     # This is a common error if graphviz is not installed.
 #     # We can just ignore it for now.
 #     pass
-
-# logger.info("Socratic LangGraph workflow compiled.")
