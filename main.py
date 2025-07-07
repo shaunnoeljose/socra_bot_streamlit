@@ -187,7 +187,7 @@ if st.sidebar.button("Clear Chat and Reset"):
     st.session_state.chat_history = []
     st.session_state.socratic_agent_state = SocraticAgentState(
         messages=[],
-        difficulty_level="beginner",
+        difficulty_level="begstreamlit run main.pyinner",
         user_struggle_count=0,
         topic="Python Basics",
         sub_topic="Introduction",
