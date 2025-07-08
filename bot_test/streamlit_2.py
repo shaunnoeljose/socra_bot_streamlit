@@ -7,6 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.graph import StateGraph, END
 from langchain_core.tools import tool
+from langgraph.graph.message import add_messages
 import uuid
 
 from dotenv import load_dotenv
@@ -19,7 +20,7 @@ MAX_MESSAGES_IN_CONTEXT = 10
 
 # --- 1. Define the Agent State ---
 class SocraticAgentState(TypedDict):
-    messages: Annotated[List[BaseMessage], lambda x, y: x + y]
+    messages: Annotated[List[BaseMessage],add_messages]
     difficulty_level: str
     user_struggle_count: int
     topic: str
