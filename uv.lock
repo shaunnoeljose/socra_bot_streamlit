@@ -171,6 +171,15 @@ wheels = [
 ]
 
 [[package]]
+name = "distro"
+version = "1.9.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/fc/f8/98eea607f65de6527f8a2e8885fc8015d3e6f5775df186e443e0964a11c3/distro-1.9.0.tar.gz", hash = "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed", size = 60722, upload-time = "2023-12-24T09:54:32.31Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl", hash = "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2", size = 20277, upload-time = "2023-12-24T09:54:30.421Z" },
+]
+
+[[package]]
 name = "dotenv"
 version = "0.9.9"
 source = { registry = "https://pypi.org/simple" }
@@ -366,6 +375,12 @@ wheels = [
 ]
 
 [[package]]
+name = "ipy"
+version = "1.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/64/a4/9c0d88d95666ff1571d7baec6c5e26abc08051801feb6e6ddf40f6027e22/IPy-1.01.tar.gz", hash = "sha256:edeca741dea2d54aca568fa23740288c3fe86c0f3ea700344571e9ef14a7cc1a", size = 33641, upload-time = "2020-12-01T20:33:09.808Z" }
+
+[[package]]
 name = "jinja2"
 version = "3.1.6"
 source = { registry = "https://pypi.org/simple" }
@@ -423,6 +438,23 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/bf/ce/46fbd9c8119cfc3581ee5643ea49464d168028cfb5caff5fc0596d0cf914/jsonschema_specifications-2025.4.1.tar.gz", hash = "sha256:630159c9f4dbea161a6a2205c3011cc4f18ff381b189fff48bb39b9bf26ae608", size = 15513, upload-time = "2025-04-23T12:34:07.418Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/01/0e/b27cdbaccf30b890c40ed1da9fd4a3593a5cf94dae54fb34f8a4b74fcd3f/jsonschema_specifications-2025.4.1-py3-none-any.whl", hash = "sha256:4653bffbd6584f7de83a67e0d620ef16900b390ddc7939d56684d6c81e33f1af", size = 18437, upload-time = "2025-04-23T12:34:05.422Z" },
+]
+
+[[package]]
+name = "kernel"
+version = "0.6.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "distro" },
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "sniffio" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/12/41/47fa031aad9d15d0be25d18c240c078b98729783fd35e10ba53d7229eeb0/kernel-0.6.4.tar.gz", hash = "sha256:4130ecca865057bb2ea6198f52faa3fab5223c36dd4bfb09af77f6027c639948", size = 110221, upload-time = "2025-06-28T03:11:24.732Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bc/47/4132be396f032188503173792774639175a1956665c1d2213bc5477ece6a/kernel-0.6.4-py3-none-any.whl", hash = "sha256:bc3047e99b21a7e8bce9a9dc508d64363e4ca93c3cccd1568108bffdbf84e760", size = 101506, upload-time = "2025-06-28T03:11:23.196Z" },
 ]
 
 [[package]]
@@ -1170,6 +1202,8 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dotenv" },
+    { name = "ipy" },
+    { name = "kernel" },
     { name = "langchain-core" },
     { name = "langchain-google-genai" },
     { name = "langgraph" },
@@ -1180,6 +1214,8 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "dotenv", specifier = ">=0.9.9" },
+    { name = "ipy", specifier = ">=1.1" },
+    { name = "kernel", specifier = ">=0.6.4" },
     { name = "langchain-core", specifier = ">=0.3.68" },
     { name = "langchain-google-genai", specifier = ">=2.1.6" },
     { name = "langgraph", specifier = ">=0.5.1" },

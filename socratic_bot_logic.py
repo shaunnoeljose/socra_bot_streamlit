@@ -6,6 +6,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.graph import StateGraph, END
+from langgraph.graph.message import add_messages
 # Removed ToolExecutor and ToolInvocation imports
 # from langgraph.prebuilt import ToolExecutor, ToolInvocation
 
@@ -15,7 +16,6 @@ load_dotenv()
 
 # --- 1. Define the Agent State ---
 # This TypedDict defines the structure of our graph's state.
-# It will hold all the information needed to manage the conversation flow.
 class SocraticAgentState(TypedDict):
     """
     Represents the state of the Socratic agent's conversation.
@@ -32,7 +32,7 @@ class SocraticAgentState(TypedDict):
         mcq_correct_answer: The correct answer for the active MCQ.
         agent_thought: The last thought process articulated by the Socratic agent.
     """
-    messages: Annotated[List[BaseMessage], lambda x, y: x + y] # Appends new messages to the list
+    messages: Annotated[List[BaseMessage], add_messages] # Appends new messages to the list
     difficulty_level: str
     user_struggle_count: int
     topic: str
@@ -46,7 +46,6 @@ class SocraticAgentState(TypedDict):
 # --- 2. Initialize the Socratic LLM and Tools ---
 
 # Initialize the Gemini LLM for the Socratic Agent
-# Ensure GOOGLE_API_KEY is set in your environment variables or .env file
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.7)
 
 # Define the system prompt for the Socratic Agent.
