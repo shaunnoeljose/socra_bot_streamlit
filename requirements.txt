@@ -5,3 +5,5 @@ langgraph
 python-dotenv
 langchain-core
 dotenv
+langchain_groq
+langchain_community
