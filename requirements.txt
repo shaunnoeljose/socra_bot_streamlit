@@ -7,3 +7,4 @@ langchain-core
 dotenv
 langchain_groq
 langchain_community
+llama_api_client
