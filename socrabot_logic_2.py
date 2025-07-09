@@ -27,7 +27,7 @@ class SocraticAgentState(TypedDict):
     agent_thought: str
 
 # --- 2. Initialize the Socratic LLM and Tools ---
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.7)
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.7)
 
 # New LLM for generating MCQs specifically. Can be the same as socratic_llm or a different one.
 # It's good practice to have a separate instance if its system prompt or temperature needs to be different.
@@ -408,18 +408,18 @@ import pprint
 pprint.pprint(result_llm_mcq)
 
 # Example test for a known MCQ topic
-print("\n--- Testing Predefined MCQ for 'variables' ---")
-known_mcq_state = {
-    "messages": [HumanMessage(content="Give me an MCQ on graphs.")],
-    "difficulty_level": "beginner",
-    "user_struggle_count": 0,
-    "topic": "variables",
-    "sub_topic": "",
-    "mcq_active": False,
-    "mcq_question": "",
-    "mcq_options": [],
-    "mcq_correct_answer": "",
-    "agent_thought": ""
-}
-result_known_mcq = socratic_graph.invoke(known_mcq_state)
-pprint.pprint(result_known_mcq)
+# print("\n--- Testing Predefined MCQ for 'variables' ---")
+# known_mcq_state = {
+#     "messages": [HumanMessage(content="Give me an MCQ on graphs.")],
+#     "difficulty_level": "beginner",
+#     "user_struggle_count": 0,
+#     "topic": "variables",
+#     "sub_topic": "",
+#     "mcq_active": False,
+#     "mcq_question": "",
+#     "mcq_options": [],
+#     "mcq_correct_answer": "",
+#     "agent_thought": ""
+# }
+# result_known_mcq = socratic_graph.invoke(known_mcq_state)
+# pprint.pprint(result_known_mcq)
