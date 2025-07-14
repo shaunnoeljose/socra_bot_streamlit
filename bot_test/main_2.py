@@ -5,7 +5,6 @@ import os
 import copy
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
-# Assuming sb_logic.py contains your socratic_graph and SocraticAgentState
 from sb_logic import enhanced_socratic_graph as socratic_graph, SocraticAgentState, memory_saver 
 
 load_dotenv()
@@ -19,8 +18,7 @@ if not os.getenv("GOOGLE_API_KEY"):
     st.error("GOOGLE_API_KEY not found in environment. Please check your .env file.")
     st.stop()
 
-# --- Initialize Session State (if not loaded by user ID or first run) ---
-# This block needs to be early to ensure st.session_state.user_id is always available
+# --- Initialize Session State ---
 if "user_id" not in st.session_state:
     st.session_state.user_id = "default_user"
 if "chat_history" not in st.session_state:
@@ -50,7 +48,6 @@ if "show_user_id_popup" not in st.session_state:
 
 
 # --- User ID Input Popup ---
-# Create a placeholder for the popup at the top of the main content area
 user_id_popup_placeholder = st.empty()
 
 if st.session_state.show_user_id_popup:
@@ -89,7 +86,6 @@ if st.session_state.show_user_id_popup:
                 else:
                     st.warning("User ID cannot be empty. Please enter a valid ID.")
 else:
-    # Clear the placeholder if the popup is not active
     user_id_popup_placeholder.empty()
 
 
